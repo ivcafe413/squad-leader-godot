@@ -1,3 +1,23 @@
-[gd_scene format=3 uid="uid://di21sqp1w0oev"]
+[gd_scene load_steps=6 format=3 uid="uid://di21sqp1w0oev"]
+
+[ext_resource type="Texture2D" path="res://assets/hex_border.svg" id="1_border"]
+[ext_resource type="Script" path="res://scripts/ui/hex_board_view.gd" id="2_view"]
+[ext_resource type="Resource" path="res://resources/boards/scenario_1_board.tres" id="3_grid"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xkndl"]
+texture = ExtResource("1_border")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_6ubv3"]
+tile_shape = 3
+tile_offset_axis = 1
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_xkndl")
 
 [node name="Game" type="Node2D" unique_id=1139750929]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=703626690]
+tile_set = SubResource("TileSet_6ubv3")
+script = ExtResource("2_view")
+hex_grid = ExtResource("3_grid")
