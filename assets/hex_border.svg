@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-	<polygon points="62,32 47,57.98 17,57.98 2,32 17,6.02 47,6.02"
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="84" viewBox="0 0 96 84">
+	<!-- Vertices touch all four canvas edges so adjacent hexes tile with no gap (Godot's hex spacing: 0.75*tile_size.x horizontally, tile_size.y vertically). -->
+	<polygon points="96,42 72,84 24,84 0,42 24,0 72,0"
 		fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" />
 </svg>
