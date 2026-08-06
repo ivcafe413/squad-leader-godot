@@ -1,0 +1,34 @@
+[gd_resource type="Resource" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/sim/hex/hex_terrain.gd" id="1_script"]
+[ext_resource type="Resource" path="res://resources/terrain/open_ground.tres" id="2_open"]
+[ext_resource type="Resource" path="res://resources/terrain/shellhole.tres" id="3_shellhole"]
+[ext_resource type="Resource" path="res://resources/terrain/wheatfield.tres" id="4_wheatfield"]
+[ext_resource type="Resource" path="res://resources/terrain/road.tres" id="5_road"]
+[ext_resource type="Resource" path="res://resources/terrain/woods.tres" id="6_woods"]
+[ext_resource type="Resource" path="res://resources/terrain/wooden_building.tres" id="7_wooden_building"]
+[ext_resource type="Resource" path="res://resources/terrain/stone_building.tres" id="8_stone_building"]
+
+[resource]
+script = ExtResource("1_script")
+rows = Array[String]([
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO"
+])
+legend = {
+"O": ExtResource("2_open"),
+"H": ExtResource("3_shellhole"),
+"F": ExtResource("4_wheatfield"),
+"R": ExtResource("5_road"),
+"W": ExtResource("6_woods"),
+"B": ExtResource("7_wooden_building"),
+"S": ExtResource("8_stone_building")
+}

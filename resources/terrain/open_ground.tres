@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/sim/terrain/terrain_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+display_name = "Open Ground"
+code = "O"
+movement_cost = 1.0
+tem_moving = -2
+tem_stationary = 0
+blocks_los = false

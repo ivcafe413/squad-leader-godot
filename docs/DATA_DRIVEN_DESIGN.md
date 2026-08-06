@@ -5,8 +5,9 @@ Rulebook data belongs in data files, not scripts, so tuning/fixing values never 
 ## Representation
 Use Godot `Resource` (`.tres`) files for all rulebook-defined data, under `res://resources/`:
 - `resources/units/` — one `.tres` per unit counter type appearing in Scenario 1 (squad/half-squad/leader), each a custom `UnitData` `Resource` with fields matching the physical counter: firepower, range, movement allowance, morale level, size/class, side.
-- `resources/terrain/` — one `.tres` per terrain type present on the Scenario 1 board, each a `TerrainData` `Resource` with movement cost, TEM (terrain effects modifier), LOS-blocking behavior, and any other printed effect.
+- `resources/terrain/` — one `.tres` per terrain type present on the Scenario 1 board, each a `TerrainData` `Resource` with movement cost, TEM (terrain effects modifier, moving/stationary), LOS-blocking behavior, and any other printed effect.
 - `resources/tables/` — the Combat Results Table (CRT) and any other lookup tables, as a `Resource` mapping (odds column / DR) → result, rather than hardcoded branches in code.
+- `resources/boards/` — one `HexGrid` `.tres` per board (shape only: width/height) and one `HexTerrain` `.tres` per scenario's terrain layout. `HexTerrain.rows` is a per-row text grid (one `TerrainData.code` character per hex/column), with a `legend` dictionary mapping each code to its `TerrainData` resource — a text grid diffs and reviews far better than editing hundreds of individual hex entries.
 
 ## Rationale
 - Adding/adjusting a unit or terrain type is a data change, reviewable without reading simulation code.
