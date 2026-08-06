@@ -4,14 +4,16 @@
 Godot implementation of Avalon Hill's *Squad Leader* (1977), a squad-level WWII tactical wargame played on a hex grid. Supports hotseat (two players, one device) and online (two players, networked) play.
 
 ## v1 Scope
-v1 implements **Scenario 1 only**. No other scenarios, no expansions (Cross of Iron, Crescendo of Doom, GI: Anvil of Victory, etc.) are in scope until a later version.
+v1 implements **Scenario 1, "The Guards Counterattack"**, only (confirmed by the rulebook's §21 "STOP!" note). No other scenarios, no expansions (Cross of Iron, Crescendo of Doom, GI: Anvil of Victory, etc.) are in scope until a later version.
+
+Scenario 1 is played entirely on **mapboard 1** (Game Set I's city board, §3.1), a single flat board with no hills and no walls/hedges (§11.5). This bounds v1's terrain/LOS scope to: open ground, shellhole, wheatfield, road, woods, wooden building, stone building (see [rules-reference/los-and-terrain.md](rules-reference/los-and-terrain.md)).
 
 v1 must deliver, end to end:
 - The Scenario 1 map (correct hexes, terrain, board configuration) and order of battle (both sides' units, initial setup restrictions).
 - The Scenario 1 victory conditions and turn/time limit.
 - All rules subsystems required to legally play that scenario from setup to a determined winner (see Subsystems below).
 
-Out of scope for v1: any rule, unit type, terrain type, or weapon not needed by Scenario 1 (e.g. armor/vehicle rules, OBA, wire/mines, if Scenario 1 doesn't use them — confirm against the scenario card and prune the list below accordingly).
+Out of scope for v1: any rule, unit type, terrain type, or weapon not needed by Scenario 1 (armor/vehicle rules, OBA, wire/mines, elevation/hills, walls/hedges, sewer movement, night rules, concealment/hidden placement, smoke, fortifications — none of these apply to a flat, single-board Game Set I scenario per §3.1/§11.5, but confirm against the actual scenario card since it isn't included in the rulebook).
 
 ## Turn Sequence (Sequence of Play)
 Each game turn is split into a Player 1 and Player 2 half, each following:
@@ -44,8 +46,9 @@ Subsystems explicitly deferred (confirm/adjust once Scenario 1 OB is fully revie
 - Wire, mines, fortifications
 - Multi-scenario/campaign play, scenario selection UI
 
-## Open items to fill in from the rulebook/scenario card
-- Scenario 1 title, map board(s) and hex range, board configuration/overlays
-- Full order of battle for both sides
+## Open items to fill in from the scenario card
+The rulebook (§1–63 + appendix) covers rules only — it does not include the physical Scenario 1 card. Still needed from that card:
+- Exact board configuration/hex range used within mapboard 1, and the terrain actually present there
+- Full order of battle for both sides (unit types, leaders, any support weapons)
 - Victory conditions and turn limit
 - Any scenario-specific special rules (SSR)
