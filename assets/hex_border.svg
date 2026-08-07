@@ -1,5 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="96" height="84" viewBox="0 0 96 84">
-	<!-- Vertices touch all four canvas edges so adjacent hexes tile with no gap (Godot's hex spacing: 0.75*tile_size.x horizontally, tile_size.y vertically). -->
-	<polygon points="96,42 72,84 24,84 0,42 24,0 72,0"
-		fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" />
+<svg xmlns="http://www.w3.org/2000/svg" width="303" height="65" viewBox="0 0 303 65">
+	<!-- Debug atlas: 4 same-shaped hex tiles, each a different transparent color, so adjacent stamped hexes are visually distinguishable. 1px separation between tiles matches the TileSetAtlasSource separation. -->
+	<polygon points="75,32.5 56.25,65 18.75,65 0,32.5 18.75,0 56.25,0" fill="#ff69b4" fill-opacity="0.5" stroke="none" />
+	<polygon points="151,32.5 132.25,65 94.75,65 76,32.5 94.75,0 132.25,0" fill="#ff0000" fill-opacity="0.5" stroke="none" />
+	<polygon points="227,32.5 208.25,65 170.75,65 152,32.5 170.75,0 208.25,0" fill="#00ff00" fill-opacity="0.5" stroke="none" />
+	<polygon points="303,32.5 284.25,65 246.75,65 228,32.5 246.75,0 284.25,0" fill="#0000ff" fill-opacity="0.5" stroke="none" />
 </svg>
+
+
+

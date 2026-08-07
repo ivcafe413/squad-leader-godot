@@ -1,23 +1,59 @@
-[gd_scene load_steps=6 format=3 uid="uid://di21sqp1w0oev"]
+[gd_scene format=3 uid="uid://di21sqp1w0oev"]
 
-[ext_resource type="Texture2D" path="res://assets/hex_border.svg" id="1_border"]
-[ext_resource type="Script" path="res://scripts/ui/hex_board_view.gd" id="2_view"]
+[ext_resource type="Texture2D" uid="uid://bxyexsl6qul5u" path="res://assets/hex_border.svg" id="1_border"]
+[ext_resource type="Script" uid="uid://cn2gxesvksaq4" path="res://scripts/ui/hex_board_view.gd" id="2_view"]
 [ext_resource type="Resource" path="res://resources/boards/scenario_1_board.tres" id="3_grid"]
+[ext_resource type="Texture2D" uid="uid://c6gybf43jhmvu" path="res://assets/boards/bd01_half.png" id="4_background"]
+[ext_resource type="Script" uid="uid://rr5ksj6qhup2" path="res://scripts/ui/board_camera.gd" id="5_camera"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xkndl"]
 texture = ExtResource("1_border")
-texture_region_size = Vector2i(96, 84)
+separation = Vector2i(1, 2)
+texture_region_size = Vector2i(75, 65)
 0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_6ubv3"]
 tile_shape = 3
 tile_offset_axis = 1
-tile_size = Vector2i(96, 84)
+tile_size = Vector2i(75, 65)
 sources/0 = SubResource("TileSetAtlasSource_xkndl")
 
-[node name="Game" type="Node2D" unique_id=1139750929]
+[node name="Game" type="Control" unique_id=1139750929]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=703626690]
+[node name="Center" type="CenterContainer" parent="." unique_id=1543939739]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoardViewport" type="SubViewportContainer" parent="Center" unique_id=1913233607]
+custom_minimum_size = Vector2(900, 645)
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="Center/BoardViewport" unique_id=2138666942]
+handle_input_locally = false
+size = Vector2i(900, 645)
+render_target_update_mode = 4
+
+[node name="BoardBackground" type="Sprite2D" parent="Center/BoardViewport/SubViewport" unique_id=-668876595]
+texture = ExtResource("4_background")
+centered = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Center/BoardViewport/SubViewport" unique_id=703626690]
 tile_set = SubResource("TileSet_6ubv3")
 script = ExtResource("2_view")
 hex_grid = ExtResource("3_grid")
+
+[node name="BoardCamera" type="Camera2D" parent="Center/BoardViewport/SubViewport" unique_id=196402068]
+position = Vector2(450, 322.5)
+script = ExtResource("5_camera")
