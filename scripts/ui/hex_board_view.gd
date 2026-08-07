@@ -1,41 +1,43 @@
 class_name HexBoardView
 extends TileMapLayer
 
-## Procedurally stamps a border-overlay tile over every hex in a HexGrid.
-## Terrain art is a separate underlaid background image, not rendered here.
+## Hex coordinate math and on-board labels for a HexGrid.
+## The board's hex grid/border art is baked into the background image, not drawn here;
+## this node's TileMapLayer hex math backs coordinate conversion for labels and (later)
+## selection/movement overlays. debug_atlas_source_id feeds an optional alignment-check overlay.
 
 @export var hex_grid: HexGrid
-@export var border_source_id: int = 0
+@export var debug_atlas_source_id: int = 0
 
 # The background art's native pixel size. Integer tile sizes rarely divide this evenly (e.g. a
 # 65px tile over 10 rows is 650px, not 645px), so the grid is rescaled to close that residual gap
 # and land exactly on the art instead of leaving it to accumulate across rows/columns.
 @export var board_pixel_size := Vector2(900, 645)
 
-# hex_border.svg is a 4-tile debug atlas (pink/red/green/blue); rotate through them per-cell
-# so adjacent stamped hexes are visually distinguishable.
-const BORDER_COLOR_COUNT := 4
+# hex_border.svg is a 4-color debug atlas (pink/red/green/blue); rotate through them per-cell
+# so adjacent hexes are visually distinguishable when checking grid/art alignment.
+const DEBUG_COLOR_COUNT := 4
 
-# Hotkey to toggle the debug color overlay on/off (e.g. for checking grid/art alignment).
+# Hotkey to toggle the debug alignment overlay on/off.
 const DEBUG_COLORS_TOGGLE_KEY := KEY_F1
 
 var _debug_colors_enabled := false
 
-# Fractions of hex_border.svg's flat-top hexagon (77x65 viewBox) used to place coordinate labels.
+# Fractions of the hex atlas's flat-top hexagon (77x65 viewBox) used to place coordinate labels.
 const TOP_EDGE_Y_FRACTION := 0.0 # y=0: the flat top edge.
 const TOP_RIGHT_X_FRACTION := 0.75 # x=0.75*width: the top-right vertex.
 const TOP_LEFT_X_FRACTION := 0.25 # x=0.25*width: the top-left vertex (mirror of TOP_RIGHT_X_FRACTION).
-const EDGE_COLUMN_LABEL_INSET_FRACTION := 0.08 # pulls edge-column labels off the vertex so they clear the border.
+const EDGE_COLUMN_LABEL_INSET_FRACTION := 0.08 # pulls edge-column labels off the vertex so they clear the border art.
 
 func _ready() -> void:
 	_apply_board_offset()
-	_generate_border_overlay()
+	_update_debug_overlay()
 	queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == DEBUG_COLORS_TOGGLE_KEY:
 		_debug_colors_enabled = not _debug_colors_enabled
-		_generate_border_overlay()
+		_update_debug_overlay()
 
 # Printed Squad Leader boards crop column A to its right half (grid shifted left half a hex);
 # the grid is also rescaled so its natural (uncropped) extent matches the background exactly.
@@ -49,7 +51,7 @@ func _apply_board_offset() -> void:
 	scale = Vector2(board_pixel_size.x / natural_width, board_pixel_size.y / natural_height)
 	position.x = -tile_w * scale.x / 2.0
 
-func _generate_border_overlay() -> void:
+func _update_debug_overlay() -> void:
 	if hex_grid == null:
 		return
 	clear()
@@ -57,8 +59,8 @@ func _generate_border_overlay() -> void:
 		return
 	for coord in hex_grid.get_all_coords():
 		var map_coord := _to_map_coord(coord)
-		var color_index := posmod(map_coord.x + map_coord.y, BORDER_COLOR_COUNT)
-		set_cell(map_coord, border_source_id, Vector2i(color_index, 0))
+		var color_index := posmod(map_coord.x + map_coord.y, DEBUG_COLOR_COUNT)
+		set_cell(map_coord, debug_atlas_source_id, Vector2i(color_index, 0))
 
 func _draw() -> void:
 	if hex_grid == null or tile_set == null:
