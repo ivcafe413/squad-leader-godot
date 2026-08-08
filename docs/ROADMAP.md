@@ -3,7 +3,7 @@
 Milestones toward a playable Scenario 1, hotseat first. Each milestone should be playable/testable on its own before moving to the next.
 
 - **M1 — Board**: Hex map data structure, Scenario 1 board rendering (terrain, hex grid, coordinates).
-- **M2 — Setup**: Unit data (`UnitData`/`TerrainData` resources per [DATA_DRIVEN_DESIGN.md](DATA_DRIVEN_DESIGN.md)), Scenario 1 order-of-battle placement, stacking limits.
+- **M2 — Setup**: Unit data (`UnitData`/`TerrainData` resources per [DATA_DRIVEN_DESIGN.md](DATA_DRIVEN_DESIGN.md)), Scenario 1 order-of-battle placement, stacking limits. See [MILESTONES.md](MILESTONES.md#m2--setup) for the full breakout.
 - **M3 — Movement**: Command pattern skeleton ([ARCHITECTURE.md](ARCHITECTURE.md)), movement command with MF costs by terrain, path validation.
 - **M4 — Fire combat**: LOS calculation, fire declaration, Combat Results Table resolution, TEM application.
 - **M5 — Morale**: Morale checks, broken/desperate status, rally phase.
